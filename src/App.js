@@ -8,10 +8,7 @@ import TextForm from "./components/TextForm";
 function App() {
     const [mode, setMode] = useState("light");
     const [alert, setAlert] = useState(null);
-    const [myStyle, setMyStyle] = useState({
-        color: "black",
-        backgroundColor: "white",
-    });
+
     const showAlert = (message, type) => {
         setAlert({
             msg: message,
@@ -28,20 +25,11 @@ function App() {
             document.body.style.backgroundColor = "#333634";
             document.body.style.color = "white";
             showAlert("Dark Mode has been enabled", "success");
-            setMyStyle({
-                color: "white",
-                backgroundColor: "#333634",
-            });
         } else {
             setMode("light");
             document.body.style.backgroundColor = "white";
             document.body.style.color = "black";
             showAlert("Light Mode has been enabled", "success");
-            setMyStyle({
-                color: "black",
-                backgroundColor: "white",
-                
-            });
         }
     };
 
@@ -53,7 +41,7 @@ function App() {
                 <div className="container my-3">
                     <Switch>
                         <Route exact path="/about">
-                            <About myStyle = {myStyle} />
+                            <About mode={mode} />
                         </Route>
 
                         <Route exact path="/">

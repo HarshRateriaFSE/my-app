@@ -29,13 +29,13 @@ export default function TextForm(props) {
                     onChange={handleOnChange}
                     rows="8"
                 ></textarea>
-                <button
+                <button disabled = {text.length===0}
                     className="btn btn-primary my-3 mx-2"
                     onClick={handleUpClick}
                 >
                     Convert to UpperCase
                 </button>
-                <button
+                <button disabled = {text.length===0}
                     className="btn btn-primary my-3 mx-1"
                     onClick={handleLoClick}
                 >
@@ -45,12 +45,12 @@ export default function TextForm(props) {
             <div className="container my-5">
                 <h1>Your Text Summary</h1>
                 <p>
-                    {text.split(" ").length ===1 ? 0 : text.split(" ").length-1} words. <br />
+                    {text.split(" ").filter((elements) => { return elements.length !== 0; }).length} words. <br />
                     {text.length} characters. <br />
-                    {(text.split(" ").length ===1 ? 0 : text.split(" ").length-1) * 0.008} minutes of reading. <br />
+                    {(text.split(" ").filter((elements) => { return elements.length !== 0; }).length) * 0.008} minutes of reading. <br />
                 </p>
                 <h2>Preview</h2>
-                <p>{text.length > 0 ? text : 'Enter something in the text box to preview here...'}</p>
+                <p>{text.length > 0 ? text : 'Nothing to preview'}</p>
             </div>
         </>
     );
